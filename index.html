@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="light" />
-  <title>Rotata — Support | Premium Support Experience</title>
-  <meta name="description" content="Premium support page for Rotata — Pixel Art 3D Puzzle. Fast response, direct contact, and a contact form." />
+  <title>Rotata — Support </title>
+  <meta name="description" content="Spport page for Rotata — Pixel Art 3D Puzzle. Fast response, direct contact, and a contact form." />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -570,16 +570,6 @@
           </span>
         </a>
 
-        <nav aria-label="Primary">
-          <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#customers">Customers</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-
         <div class="nav-cta">
           <a class="btn primary" href="#contact">Contact Support</a>
         </div>
@@ -602,19 +592,14 @@
             </h2>
 
             <p class="lede">
-              If you have any questions or feedback for Rotata — Pixel Art 3D Puzzle, please contact us.
+              If you have any questions or feedback for "Rotata — Pixel Art 3D Puzzle", please contact us.
               We will get back to you as soon as possible.
             </p>
 
             <div class="hero-actions">
-              <a class="btn primary" href="#contact">Send a message</a>
+              <a class="btn primary" href="mailto:simidimus@gmail.com">Send a message</a>
             </div>
 
-            <div class="meta-row" aria-label="Support benefits">
-              <span>Fast response</span><span class="sep" aria-hidden="true"></span>
-              <span>Premium features</span><span class="sep" aria-hidden="true"></span>
-              <span>Direct contact</span>
-            </div>
           </article>
 
           <aside class="side reveal" style="transition-delay:.08s">
@@ -622,50 +607,12 @@
             <p>Send us an email and we’ll get back to you as soon as possible.</p>
 
             <div class="email" role="group" aria-label="Masked support email">
-              <code id="maskedEmail">simidimuss@gmail.com</code>
+              <code id="maskedEmail">simidimus@gmail.com</code>
               <button class="copy" type="button" id="copyEmailBtn" aria-label="Copy email (masked)">
                 Copy
               </button>
             </div>
           </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact" aria-label="Contact section">
-      <div class="container">
-        <div class="support-grid">
-          <section class="panel reveal">
-            <h3 class="title">Contact Form</h3>
-            <p class="subtitle">Fill out the form and we will get back to you shortly.</p>
-
-            <form id="supportForm">
-              <div class="row">
-                <div>
-                  <label for="name">Your Name</label>
-                  <input class="field" id="name" name="name" type="text" placeholder="Your Name" autocomplete="name" required />
-                </div>
-                <div>
-                  <label for="email">Your Email</label>
-                  <input class="field" id="email" name="email" type="email" placeholder="Your Email" autocomplete="email" required />
-                </div>
-              </div>
-
-              <div>
-                <label for="subject">Subject</label>
-                <input class="field" id="subject" name="subject" type="text" placeholder="Subject" required />
-              </div>
-
-              <div>
-                <label for="message">Message</label>
-                <textarea class="field" id="message" name="message" placeholder="Message" required></textarea>
-              </div>
-
-              <div class="form-actions">
-                <button class="btn primary" type="submit" id="sendBtn">Send Message</button>
-              </div>
-            </form>
-          </section>
         </div>
       </div>
     </section>
@@ -682,7 +629,7 @@
               Support page compliant with App Store &amp; Google Play.
             </p>
             <div class="legal">
-              © 2026 Support page for Rotata - Pixel art 3d puzzle. All rights reserved.<br/>
+              idimus© 2026 Support page for "Rotata - Pixel Art 3d Puzzle". All rights reserved.<br/>
               Not affiliated with Apple Inc. or Google LLC. App Store and Google Play are trademarks of their respective owners.
             </div>
           </div>
@@ -692,49 +639,10 @@
   </footer>
 
   <script>
-    // Demo status: matches the reference context ("This page is not active - Email and forms are disabled")
-    let isVerified = true;
-
-    const form = document.getElementById('supportForm');
-    const sendBtn = document.getElementById('sendBtn');
     const toggleStatusBtn = document.getElementById('toggleStatusBtn');
 
     const copyBtn = document.getElementById('copyEmailBtn');
     const maskedEmail = document.getElementById('maskedEmail');
-
-    function applyStatus(){
-      // Disable/enable form fields
-      [...form.querySelectorAll('input, textarea, button[type="submit"]')].forEach(el => {
-        if(el.id === 'sendBtn'){
-          el.disabled = !isVerified;
-        } else {
-          el.disabled = !isVerified;
-        }
-      });
-
-      // Visual cue on button
-      sendBtn.textContent = isVerified ? 'Send Message' : 'Send Message (Disabled)';
-      sendBtn.style.opacity = isVerified ? '1' : '.65';
-      sendBtn.style.cursor = isVerified ? 'pointer' : 'not-allowed';
-
-      // Copy button remains available, but only copies the masked email in this demo
-      maskedEmail.textContent = 'simidimus@gmail.com';
-    }
-
-    applyStatus();
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if(!isVerified){
-        announce('Form is disabled because the page is unverified.');
-        return;
-      }
-      // Demo-only success
-      const fd = new FormData(form);
-      const name = (fd.get('name') || '').toString().trim() || 'there';
-      announce(`Message sent. Thanks, ${name}. (Demo)`);
-      form.reset();
-    });
 
     copyBtn.addEventListener('click', async () => {
       const text = maskedEmail.textContent.trim();
