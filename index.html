@@ -1,1 +1,780 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Rotata — Support | Premium Support Experience</title>
+  <meta name="description" content="Premium support page for Rotata — Pixel Art 3D Puzzle. Fast response, direct contact, and a contact form." />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500,650,750&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0c0f14;
+      --bg2:#0a0c10;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.085);
+      --stroke: rgba(255,255,255,.12);
+      --stroke2: rgba(255,255,255,.18);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.66);
+      --faint: rgba(255,255,255,.45);
+
+      --brand: #8ef0c6;   /* mint */
+      --brand2:#f5d06f;   /* honey */
+      --danger:#ff5c7a;
+
+      --shadow: 0 18px 50px rgba(0,0,0,.42);
+      --shadow2: 0 10px 30px rgba(0,0,0,.35);
+
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+
+      --max: 1140px;
+      --gutter: clamp(16px, 4vw, 34px);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 12% 18%, rgba(142,240,198,.14), transparent 55%),
+        radial-gradient(900px 650px at 80% 15%, rgba(245,208,111,.14), transparent 55%),
+        radial-gradient(900px 720px at 60% 90%, rgba(167,111,245,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{
+      width:min(var(--max), 100% - (var(--gutter) * 2));
+      margin-inline:auto;
+    }
+
+    /* Subtle pixel-grid texture */
+    .texture{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.14;
+      mix-blend-mode:overlay;
+      background:
+        linear-gradient(transparent 31px, rgba(255,255,255,.06) 32px),
+        linear-gradient(90deg, transparent 31px, rgba(255,255,255,.06) 32px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(900px 520px at 50% 20%, black 35%, transparent 75%);
+      z-index:0;
+    }
+
+    /* Nav */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(10,12,16,.62);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 0;
+      gap:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 220px;
+    }
+    .logo{
+      width:38px;height:38px;border-radius:12px;
+      background:
+        linear-gradient(135deg, rgba(142,240,198,.9), rgba(245,208,111,.85));
+      box-shadow: 0 12px 28px rgba(142,240,198,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        repeating-linear-gradient(0deg, rgba(0,0,0,.16) 0 3px, transparent 3px 7px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.10) 0 2px, transparent 2px 6px);
+      opacity:.45;
+      mix-blend-mode:overlay;
+    }
+    .brand h1{
+      font-family: Fraunces, serif;
+      font-size: 18px;
+      letter-spacing:.2px;
+      margin:0;
+      line-height:1.1;
+    }
+    .brand .sub{
+      display:block;
+      font-size: 12.5px;
+      color:var(--muted);
+      margin-top:2px;
+      letter-spacing:.02em;
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap: 18px;
+      padding:0;margin:0;
+      align-items:center;
+    }
+    nav a{
+      font-size: 13px;
+      color:var(--muted);
+      padding:10px 10px;
+      border-radius: 12px;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    nav a:hover{
+      color:var(--text);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta{
+      display:flex; align-items:center; gap:10px;
+      min-width: 230px;
+      justify-content:flex-end;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      color: var(--muted);
+      font-size: 12.5px;
+      white-space:nowrap;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:999px;
+      background: var(--danger);
+      box-shadow: 0 0 0 6px rgba(255,92,122,.12);
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:600;
+      padding: 10px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.22);
+      box-shadow: 0 12px 24px rgba(0,0,0,.25);
+    }
+    .btn:active{transform: translateY(0px) scale(.99)}
+    .btn.primary{
+      border-color: rgba(142,240,198,.28);
+      background: linear-gradient(135deg, rgba(142,240,198,.18), rgba(245,208,111,.12));
+      box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    }
+    .btn.primary:hover{
+      border-color: rgba(142,240,198,.45);
+      box-shadow: 0 22px 52px rgba(0,0,0,.35);
+    }
+
+    /* Main */
+    main{position:relative; z-index:1}
+    .hero{
+      padding: clamp(28px, 5vw, 56px) 0 22px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: clamp(18px, 3vw, 28px);
+      align-items:stretch;
+    }
+
+    .banner{
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(142,240,198,.22), transparent 55%),
+        radial-gradient(700px 480px at 85% 20%, rgba(245,208,111,.20), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+      padding: clamp(18px, 3vw, 26px);
+      min-height: 320px;
+    }
+
+    .banner:after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 8px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,.12) 0 1px, transparent 1px 10px);
+      opacity:.35;
+      mix-blend-mode: overlay;
+      pointer-events:none;
+      mask-image: radial-gradient(520px 360px at 22% 22%, black 45%, transparent 75%);
+    }
+
+    .kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .kicker .tag{
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      letter-spacing:.07em;
+      font-weight:600;
+      font-size:12px;
+      color: rgba(255,255,255,.78);
+    }
+
+    .headline{
+      margin: 14px 0 10px;
+      font-family: Fraunces, serif;
+      font-weight: 750;
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.03;
+      letter-spacing: -0.02em;
+    }
+    .headline em{
+      font-style:normal;
+      background: linear-gradient(90deg, rgba(142,240,198,1), rgba(245,208,111,1));
+      -webkit-background-clip: text;
+      background-clip:text;
+      color:transparent;
+    }
+    .lede{
+      margin:0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: clamp(14.5px, 1.25vw, 16.5px);
+      line-height:1.6;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      margin-top: 18px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .meta-row{
+      display:flex;
+      gap:14px;
+      margin-top: 18px;
+      flex-wrap:wrap;
+      color: var(--faint);
+      font-size: 13px;
+      align-items:center;
+    }
+    .meta-row .sep{
+      width:4px;height:4px;border-radius:99px;background: rgba(255,255,255,.22);
+    }
+
+    /* Side panel */
+    .side{
+      border-radius: var(--radius-xl);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+      position:relative;
+      padding: clamp(16px, 2.4vw, 22px);
+      min-height: 160px;
+    }
+    .side h3{
+      font-family: Fraunces, serif;
+      font-weight: 650;
+      letter-spacing: -.01em;
+      margin: 2px 0 10px;
+      font-size: 20px;
+    }
+    .side p{
+      margin:0 0 14px;
+      color: var(--muted);
+      line-height:1.55;
+      font-size: 14.5px;
+    }
+
+    .email{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(0,0,0,.20);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .email code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      color: rgba(255,255,255,.86);
+    }
+    .copy{
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      cursor:pointer;
+      font-weight:600;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      font-size: 13px;
+    }
+    .copy:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22);}
+    .copy:active{transform: translateY(0px) scale(.99);}
+
+    .notice{
+      margin-top: 14px;
+      border-radius: 18px;
+      padding: 12px 12px;
+      background: linear-gradient(180deg, rgba(255,92,122,.10), rgba(255,92,122,.06));
+      border: 1px solid rgba(255,92,122,.22);
+      color: rgba(255,255,255,.84);
+      font-size: 13.5px;
+      line-height:1.45;
+    }
+    .notice strong{font-weight:750}
+    .notice a{
+      color: rgba(255,255,255,.92);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Content section */
+    .section{
+      padding: 26px 0 64px;
+    }
+
+    .support-grid{
+      display:grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(18px, 3vw, 30px);
+      align-items:start;
+      margin-top: 12px;
+    }
+
+    .panel{
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      box-shadow: var(--shadow2);
+      padding: clamp(18px, 2.8vw, 26px);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .panel .title{
+      font-family: Fraunces, serif;
+      font-weight: 750;
+      margin:0;
+      font-size: clamp(22px, 2.2vw, 28px);
+      letter-spacing: -.02em;
+    }
+    .panel .subtitle{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height:1.6;
+      font-size: 14.5px;
+      max-width: 62ch;
+    }
+
+    /* Form */
+    form{
+      margin-top: 16px;
+      display:grid;
+      gap: 12px;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    label{
+      display:block;
+      font-size: 12.5px;
+      color: rgba(255,255,255,.72);
+      margin: 0 0 6px;
+      letter-spacing:.02em;
+    }
+    .field{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      padding: 12px 12px;
+      color: rgba(255,255,255,.92);
+      outline:none;
+      width:100%;
+      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      font-size: 14.5px;
+    }
+    .field::placeholder{color: rgba(255,255,255,.36)}
+    .field:focus{
+      border-color: rgba(142,240,198,.55);
+      box-shadow: 0 0 0 6px rgba(142,240,198,.12);
+      background: rgba(0,0,0,.28);
+    }
+    textarea.field{
+      min-height: 140px;
+      resize: vertical;
+      line-height:1.45;
+    }
+
+    .form-actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-top: 2px;
+    }
+    .hint{
+      color: var(--faint);
+      font-size: 12.5px;
+      line-height:1.3;
+      max-width: 52ch;
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(10,12,16,.55);
+      backdrop-filter: blur(10px);
+      padding: 26px 0;
+      position:relative;
+      z-index:1;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:start;
+    }
+    .foot-brand{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .foot-brand h4{
+      margin:0;
+      font-family: Fraunces, serif;
+      letter-spacing: -.01em;
+      font-size: 18px;
+    }
+    .foot-brand p{
+      margin:6px 0 0;
+      color: var(--muted);
+      max-width: 60ch;
+      line-height:1.55;
+      font-size: 13.5px;
+    }
+    .foot-links{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .foot-links a{
+      color: var(--muted);
+      font-size: 13.5px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: background .18s ease, border-color .18s ease, transform .18s ease, color .18s ease;
+    }
+    .foot-links a:hover{
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+      border-color: rgba(255,255,255,.10);
+      transform: translateY(-1px);
+    }
+    .legal{
+      margin-top: 16px;
+      color: rgba(255,255,255,.45);
+      font-size: 12.5px;
+      line-height:1.5;
+    }
+
+    /* Reveal */
+    .reveal{opacity:0; transform: translateY(14px); filter: blur(2px)}
+    .reveal.is-visible{
+      opacity:1; transform: translateY(0); filter: blur(0);
+      transition: opacity .7s ease, transform .7s ease, filter .7s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr}
+      .support-grid{grid-template-columns: 1fr}
+      .brand{min-width:auto}
+      .nav-cta{min-width:auto}
+      nav ul{display:none}
+    }
+    @media (max-width: 560px){
+      .row{grid-template-columns: 1fr}
+      .pill{display:none}
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto !important}
+      .reveal, .reveal.is-visible{transition:none !important; transform:none !important; opacity:1 !important; filter:none !important}
+      .btn, nav a, .copy{transition:none !important}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="texture" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Go to top">
+          <span class="logo" aria-hidden="true"></span>
+          <span>
+            <h1>Support for Rotata - Pixel Art 3d Puzzle</h1>
+            <span class="sub">Found issue or have suggestions, contact with support.</span>
+          </span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#customers">Customers</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn primary" href="#contact">Contact Support</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <article class="banner reveal">
+            <div class="kicker">
+              <span class="tag">Rotata - Pixel Art 3D Puzzle</span>
+            </div>
+
+            <h2 class="headline">
+              Need help with <em>Rotata</em>?
+              <br />Fast support. Direct contact.
+            </h2>
+
+            <p class="lede">
+              If you have any questions or feedback for Rotata — Pixel Art 3D Puzzle, please contact us.
+              We will get back to you as soon as possible.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#contact">Send a message</a>
+            </div>
+
+            <div class="meta-row" aria-label="Support benefits">
+              <span>Fast response</span><span class="sep" aria-hidden="true"></span>
+              <span>Premium features</span><span class="sep" aria-hidden="true"></span>
+              <span>Direct contact</span>
+            </div>
+          </article>
+
+          <aside class="side reveal" style="transition-delay:.08s">
+            <h3>Contact email</h3>
+            <p>Send us an email and we’ll get back to you as soon as possible.</p>
+
+            <div class="email" role="group" aria-label="Masked support email">
+              <code id="maskedEmail">simidimuss@gmail.com</code>
+              <button class="copy" type="button" id="copyEmailBtn" aria-label="Copy email (masked)">
+                Copy
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-label="Contact section">
+      <div class="container">
+        <div class="support-grid">
+          <section class="panel reveal">
+            <h3 class="title">Contact Form</h3>
+            <p class="subtitle">Fill out the form and we will get back to you shortly.</p>
+
+            <form id="supportForm">
+              <div class="row">
+                <div>
+                  <label for="name">Your Name</label>
+                  <input class="field" id="name" name="name" type="text" placeholder="Your Name" autocomplete="name" required />
+                </div>
+                <div>
+                  <label for="email">Your Email</label>
+                  <input class="field" id="email" name="email" type="email" placeholder="Your Email" autocomplete="email" required />
+                </div>
+              </div>
+
+              <div>
+                <label for="subject">Subject</label>
+                <input class="field" id="subject" name="subject" type="text" placeholder="Subject" required />
+              </div>
+
+              <div>
+                <label for="message">Message</label>
+                <textarea class="field" id="message" name="message" placeholder="Message" required></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn primary" type="submit" id="sendBtn">Send Message</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="foot-brand">
+          <span class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:12px"></span>
+          <div>
+            <h4>Support for Rotata</h4>
+            <p>
+              Support page compliant with App Store &amp; Google Play.
+            </p>
+            <div class="legal">
+              © 2026 Support page for Rotata - Pixel art 3d puzzle. All rights reserved.<br/>
+              Not affiliated with Apple Inc. or Google LLC. App Store and Google Play are trademarks of their respective owners.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Demo status: matches the reference context ("This page is not active - Email and forms are disabled")
+    let isVerified = true;
+
+    const form = document.getElementById('supportForm');
+    const sendBtn = document.getElementById('sendBtn');
+    const toggleStatusBtn = document.getElementById('toggleStatusBtn');
+
+    const copyBtn = document.getElementById('copyEmailBtn');
+    const maskedEmail = document.getElementById('maskedEmail');
+
+    function applyStatus(){
+      // Disable/enable form fields
+      [...form.querySelectorAll('input, textarea, button[type="submit"]')].forEach(el => {
+        if(el.id === 'sendBtn'){
+          el.disabled = !isVerified;
+        } else {
+          el.disabled = !isVerified;
+        }
+      });
+
+      // Visual cue on button
+      sendBtn.textContent = isVerified ? 'Send Message' : 'Send Message (Disabled)';
+      sendBtn.style.opacity = isVerified ? '1' : '.65';
+      sendBtn.style.cursor = isVerified ? 'pointer' : 'not-allowed';
+
+      // Copy button remains available, but only copies the masked email in this demo
+      maskedEmail.textContent = 'simidimus@gmail.com';
+    }
+
+    applyStatus();
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if(!isVerified){
+        announce('Form is disabled because the page is unverified.');
+        return;
+      }
+      // Demo-only success
+      const fd = new FormData(form);
+      const name = (fd.get('name') || '').toString().trim() || 'there';
+      announce(`Message sent. Thanks, ${name}. (Demo)`);
+      form.reset();
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      const text = maskedEmail.textContent.trim();
+      try{
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = 'Copied';
+        setTimeout(() => copyBtn.textContent = 'Copy', 1100);
+        announce('Email copied to clipboard.');
+      } catch (err){
+        announce('Copy failed. Your browser may block clipboard access.');
+      }
+    });
+
+    // IntersectionObserver reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.12});
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${Math.min(i * 70, 220)}ms`;
+      io.observe(el);
+    });
+
+    // Accessible announcer
+    const live = document.createElement('div');
+    live.setAttribute('aria-live', 'polite');
+    live.setAttribute('aria-atomic', 'true');
+    live.style.position = 'fixed';
+    live.style.left = '-9999px';
+    live.style.top = '0';
+    document.body.appendChild(live);
+
+    function announce(msg){
+      live.textContent = msg;
+    }
+  </script>
+</body>
+</html>
